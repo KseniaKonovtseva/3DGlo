@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("script one"),console.log("script two")})();
