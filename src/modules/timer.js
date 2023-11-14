@@ -15,7 +15,18 @@ const timer = (deadline) => {
     return {timeRemaining, hours, minutes, seconds}
   }
 
-  
+  const updateClock = () => {
+    let getTime = getTimeRemaining()
+    
+    if (getTime.timeRemaining > 0) {
+      timerHours.textContent = ('0' + getTime.hours).slice(-2);
+      timerMinutes.textContent = ('0' + getTime.minutes).slice(-2);
+      timerSeconds.textContent = ('0' + getTime.seconds).slice(-2);
+    } else {
+      clearInterval(idInterval)
+    }
+  }
+  idInterval = setInterval(updateClock, 1000)
 
 }
 
