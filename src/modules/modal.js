@@ -2,7 +2,6 @@
 const modal = () => {
   const buttons = document.querySelectorAll('.popup-btn');
   const modal = document.querySelector('.popup');
-  const closeBtn = modal.querySelector('.popup-close');
 
   let count = 0;
   let idInterval;
@@ -16,10 +15,6 @@ const modal = () => {
     })
   })
 
-  closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-  })
-
   const modalAnimate = () => {
     count+=5
     idInterval = requestAnimationFrame(modalAnimate)
@@ -31,6 +26,12 @@ const modal = () => {
       count = 0;
     }
   }
+
+  modal.addEventListener('click', (e) => {
+    if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+      modal.style.display = 'none';
+    }
+  })
   
 }
 
