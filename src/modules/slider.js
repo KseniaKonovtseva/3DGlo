@@ -9,7 +9,6 @@ const slider = () => {
 
   const createDots = () => {
     for (let i = 1; i <= slides.length; i++) {
-      console.log('li')
       const li = document.createElement('li')
       li.classList.add('dot')
       dotsBlock.append(li)
