@@ -1,4 +1,4 @@
-const validator = () => {
+const validation = () => {
   const numInputs = document.querySelectorAll('.calc-block input')
   const forms = document.querySelectorAll('[name="user_form"]')
   // const formName = document.querySelectorAll('.form-name')
@@ -76,4 +76,4 @@ const validator = () => {
 
 }
 
-export default validator
+export default validation
