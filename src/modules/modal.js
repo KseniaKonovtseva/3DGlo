@@ -1,38 +1,34 @@
 'use strict'
+import { animate } from "./helpers";
+
 const modal = () => {
   const buttons = document.querySelectorAll('.popup-btn');
   const modal = document.querySelector('.popup');
-
-  let count = 0;
-  let idInterval;
 
   const screenWidth = document.documentElement.clientWidth
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       modal.style.display = 'block';
-      if (screenWidth > 768) {modalAnimate()}
+      if (screenWidth > 768) {
+        animate({
+          duration: 1000,
+          timing(timeFraction) {
+            return timeFraction;
+          },
+          draw(progress) {
+            modal.style.opacity = progress;
+          }
+        });
+      }
     })
   })
-
-  const modalAnimate = () => {
-    count+=5
-    idInterval = requestAnimationFrame(modalAnimate)
-
-    if (count < 101) {
-      modal.style.opacity = `${count}%`;
-    } else {
-      cancelAnimationFrame(idInterval)
-      count = 0;
-    }
-  }
 
   modal.addEventListener('click', (e) => {
     if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
       modal.style.display = 'none';
     }
   })
-  
 }
 
 export default modal
