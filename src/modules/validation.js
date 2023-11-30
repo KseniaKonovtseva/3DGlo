@@ -1,10 +1,6 @@
 const validation = () => {
   const numInputs = document.querySelectorAll('.calc-block input')
   const forms = document.querySelectorAll('[name="user_form"]')
-  // const formName = document.querySelectorAll('.form-name')
-  // const formEmail = document.querySelectorAll('.form-email')
-  // const formPhone = document.querySelectorAll('.form-phone')
-  // const formMessage = document.querySelector('.mess')
 
   numInputs.forEach(el => {
     el.addEventListener('input', (e) => {
@@ -13,66 +9,44 @@ const validation = () => {
   })
 
   forms.forEach(el => {
-    el.addEventListener('submit', (e) => {
+    el.addEventListener('input', (e) => {
       e.preventDefault()
 
-      const formName = el.querySelectorAll('.form-name')
-      const formEmail = el.querySelectorAll('.form-email')
-      const formPhone = el.querySelectorAll('.form-phone')
+      const formName = el.querySelector('.form-name')
+      const formEmail = el.querySelector('.form-email')
+      const formPhone = el.querySelector('.form-phone')
       const formMessage = el.querySelector('.mess')
 
       let isError = false
 
-      if (!/[^а-яА-Я]/g.test(formName.value)) {
+      if (!/[^а-яА-Я\s]/g.test(formName.value) && formName.value !== '') {
         console.log('okName');
       } else {
-        console.log('noName');
+        isError = true
       }
 
       if (formMessage) {
         if (!/[^а-яА-Я\-\s]/g.test(formMessage.value)) {
           console.log('okMes');
         } else {
-          console.log('noMes');
+          isError = true
         }
       }
 
-      if (!/[^\w\@\-\_\.\!\~\*\']/g.test(formEmail.value)) {
+      if (!/[^а-яА-Я\s\d\-\.\,\!\?\:]/g.test(formEmail.value) && formEmail.value !== '') {
         console.log('okEmail');
       } else {
-        console.log('noEmail');
+        isError = true
       }
 
-      if (!/[^\d\(\)\-]/g.test(formPhone.value)) {
+      if (!/[^\d\(\)\-\+]/g.test(formPhone.value) && formPhone.value !== '') {
         console.log('okTel');
       } else {
-        console.log('noTel');
+        isError = true
       }
 
     })
   })
-
-  // formName.forEach(el => {
-  //   el.addEventListener('input', (e) => {
-  //     e.target.value = e.target.value.replace(/[^а-яА-Я]/g, "")
-  //   })
-  // })
-
-  // formMessage.addEventListener('input', (e) => {
-  //   e.target.value = e.target.value.replace(/[^а-яА-Я\-\s]/g, "")
-  // })
-
-  // formEmail.forEach(el => {
-  //   el.addEventListener('input', (e) => {
-  //     e.target.value = e.target.value.replace(/[^\w\@\-\_\.\!\~\*\']/g, "")
-  //   })
-  // })
-
-  // formPhone.forEach(el => {
-  //   el.addEventListener('input', (e) => {
-  //     e.target.value = e.target.value.replace(/[^\d\(\)\-]/g, "")
-  //   })
-  // })
 
 }
 
