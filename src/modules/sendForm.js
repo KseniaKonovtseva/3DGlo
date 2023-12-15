@@ -1,12 +1,16 @@
 const sendForm = ({formId, someElem = []}) => {
   const form = document.getElementById(formId)
   const statusBlock = document.createElement('div')
-  const loadText = 'Загрузка'
+  const loadText = 'Загрузка...'
   const errorText = 'Ошибка'
   const successText = 'Спасибо! Наш менеджер с вами свяжется'
 
-  const validate = (list) => {
+  const validate = () => {
     let success = true
+
+    if (!form.classList.contains('success')) {
+      success = false
+    }
 
     return success
   }
@@ -42,10 +46,8 @@ const sendForm = ({formId, someElem = []}) => {
         formBody[elem.id] = element.value
       }
     })
-
-    // console.log('submit');
     
-    if (validate(formElements)) {
+    if (validate()) {
       sendData(formBody)
         .then(data => {
           statusBlock.textContent = successText
@@ -58,7 +60,7 @@ const sendForm = ({formId, someElem = []}) => {
           statusBlock.textContent = errorText
         })
     } else {
-      alert('Данные не валидны')
+      statusBlock.textContent = 'Введите корректные данные'
     }
   }
   

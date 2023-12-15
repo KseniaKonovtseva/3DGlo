@@ -7,6 +7,13 @@ const calc = (price = 100) => {
   const calcCount = document.querySelector('.calc-count')
   const calcDay = document.querySelector('.calc-day')
   const total = document.getElementById('total')
+  const numInputs = document.querySelectorAll('.calc-block input')
+
+  numInputs.forEach(el => {
+    el.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D+/, "")
+    })
+  })
   
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value

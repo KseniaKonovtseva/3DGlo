@@ -1,52 +1,49 @@
-const validation = () => {
-  const numInputs = document.querySelectorAll('.calc-block input')
-  const forms = document.querySelectorAll('[name="user_form"]')
+const validation = (formId) => {
+  const form = document.getElementById(formId)
 
-  numInputs.forEach(el => {
-    el.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/\D+/, "")
-    })
-  })
-
-  forms.forEach(el => {
-    el.addEventListener('input', (e) => {
+  form.addEventListener('submit', (e) => {
       e.preventDefault()
 
-      const formName = el.querySelector('.form-name')
-      const formEmail = el.querySelector('.form-email')
-      const formPhone = el.querySelector('.form-phone')
-      const formMessage = el.querySelector('.mess')
+      const formName = form.querySelector('.form-name')
+      const formEmail = form.querySelector('.form-email')
+      const formPhone = form.querySelector('.form-phone')
+      const formMessage = form.querySelector('.mess')
 
       let isError = false
 
       if (!/[^а-яА-Я\s]/g.test(formName.value) && formName.value !== '') {
-        console.log('okName');
+        isError = false
       } else {
         isError = true
       }
 
       if (formMessage) {
         if (!/[^а-яА-Я\-\s]/g.test(formMessage.value)) {
-          console.log('okMes');
+          isError = false
         } else {
           isError = true
         }
       }
 
       if (!/[^а-яА-Я\s\d\-\.\,\!\?\:]/g.test(formEmail.value) && formEmail.value !== '') {
-        console.log('okEmail');
+        isError = false
       } else {
         isError = true
       }
 
       if (!/[^\d\(\)\-\+]/g.test(formPhone.value) && formPhone.value !== '') {
-        console.log('okTel');
+        isError = false
       } else {
         isError = true
       }
 
+      if (isError === false) {
+        form.classList.add('success')
+      } else {
+        form.classList.remove('success')
+      }
+      
     })
-  })
 
 }
 
