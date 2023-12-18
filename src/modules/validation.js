@@ -10,31 +10,23 @@ const validation = (formId) => {
       const formMessage = form.querySelector('.mess')
 
       let isError = false
+      
+      if (/[^а-яА-ЯёЁ\s]/g.test(formName.value) && formName.value !== '') {
+        isError = true
+      }
 
-      if (!/[^а-яА-Я\s]/g.test(formName.value) && formName.value !== '') {
-        isError = false
-      } else {
+      if (/[w\s\-\.\,\!\?\:]/g.test(formEmail.value) && formEmail.value !== '') {
+        isError = true
+      }
+
+      if (/[^\d\(\)\-\+]/g.test(formPhone.value) && formPhone.value !== '') {
         isError = true
       }
 
       if (formMessage) {
-        if (!/[^а-яА-Я\-\s]/g.test(formMessage.value)) {
-          isError = false
-        } else {
+        if (/[^а-яА-Я\-\s]/g.test(formMessage.value)) {
           isError = true
         }
-      }
-
-      if (!/[^а-яА-Я\s\d\-\.\,\!\?\:]/g.test(formEmail.value) && formEmail.value !== '') {
-        isError = false
-      } else {
-        isError = true
-      }
-
-      if (!/[^\d\(\)\-\+]/g.test(formPhone.value) && formPhone.value !== '') {
-        isError = false
-      } else {
-        isError = true
       }
 
       if (isError === false) {
