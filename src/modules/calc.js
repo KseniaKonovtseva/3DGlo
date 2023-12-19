@@ -50,7 +50,7 @@ const calc = (price = 100) => {
     }
   }
 
-  calcBlock.addEventListener('change', (e) => {
+  calcBlock.addEventListener('input', (e) => {
     countCalc()
   })
 }

@@ -6,11 +6,13 @@ const modal = () => {
   const modal = document.querySelector('.popup');
 
   const screenWidth = document.documentElement.clientWidth
+  const mobile = window.matchMedia("(max-width: 768px)");
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       modal.style.display = 'block';
-      if (screenWidth > 768) {
+      // if (screenWidth > 768) {
+      if (!mobile.matches) {
         animate({
           duration: 1000,
           timing(timeFraction) {
